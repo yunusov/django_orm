@@ -1,0 +1,1 @@
+ruff check store_app config --fix

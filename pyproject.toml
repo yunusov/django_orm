@@ -1,0 +1,57 @@
+[project]
+name = "django-orm"
+version = "0.1.0"
+description = "Django ORM. Otus. Vitaly Yunusov. 2026"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "bs4>=0.0.2",
+    "celery[pytest,redis]>=5.6.3",
+    "django>=6.0.4",
+    "django-celery-results>=2.6.0",
+    "drf-yasg>=1.21.15",
+    "faker>=40.21.0",
+    "loguru>=0.7.3",
+    "psycopg2>=2.9.12",
+    "pydantic>=2.13.3",
+    "pydantic-settings>=2.14.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "pytest-django>=4.12.0",
+    "pytest-mock>=3.15.1",
+    "ruff>=0.15.20",
+]
+
+[tool.ruff]
+# Версия Python
+target-version = "py314"
+
+# Какие правила включить
+lint.select = [
+    "F",    # pyflakes — ошибки (например, неиспользуемые импорты)
+    "E",    # pycodestyle — ошибки
+    "W",    # pycodestyle — предупреждения
+    "I",    # isort — сортировка импортов
+    "N",    # pep8-naming — именование
+    "UP",   # pyupgrade — синтаксис современного Python
+    "PL",   # pylint — некоторые правила из pylint
+    "RUF",  # специфичные для ruff
+]
+
+# Какие правила игнорировать
+lint.ignore = [
+    "E501",  # длинные строки (line too long) — часто отключают
+]
+
+# Максимальная длина строки
+line-length = 88  # стандарт black
+
+# Настройки для импортов (isort)
+[tool.ruff.lint.isort]
+known-first-party = ["config", "store_app"]
+
+# Исключённые директории
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]  # разрешить неиспользуемые импорты в __init__.py
+"store_app/migrations/*" = ["RUF012"]
+"store_app/forms.py" = ["RUF012"]
