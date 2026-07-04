@@ -28,6 +28,13 @@ lint:
 
 test:
   stage: testing
+  services:
+    - postgres
+  variables:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: postgres
+    DB_HOST: localhost
   script:
     - uv run bash start_test.sh
 
